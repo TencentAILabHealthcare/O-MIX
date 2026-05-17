@@ -1,0 +1,7 @@
+{
+  "127399-soft-tissue": "The sample is a synovial sarcoma of soft tissue lineage, classified under the ONCOTREE code SYNS.",
+  "143b-bone": "The sample is from a 13 year old Caucasian female with primary osteosarcoma of the bone. The tumor has high purity (0.98) and a ploidy of 3.61;",
+  "201t-lung": "The sample is a lung adenocarcinoma (Non-Small Cell Lung Cancer) with a tumor mutational burden of 10.1 non-synonymous mutations per megabase. The sample harbors mutations in BCLAF1, BRINP3, CNTNAP3, FAM187A, KRT83, MAP3K2, MUC4, SLC22A6, STK11, TMTC2, and TP53. These genes are involved in various cellular processes, including apoptosis (TP53), cell cycle regulation (TP53), and signaling pathways (MAP3K2).",
+  "22rv1-prostate": "A male Caucasian patient with prostate adenocarcinoma (primary site: prostate) was diagnosed with carcinoma of adherent epithelial origin. The tumor was cultured in RPMI 1640-+-10-% FBS with a doubling time of 58.4-hours and frozen in 5-% DMSO. The sample exhibited a high tumor mutational burden (TMB) of 73.7 non synonymous mutations per megabase.",
+  "2313287-stomach": "The sample is from a 72 year old Caucasian male with primary stomach adenocarcinoma. The tumor is classified as gastric adenocarcinoma with a purity of 1.0 and ploidy of 2.09."
+}

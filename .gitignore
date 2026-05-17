@@ -1,0 +1,89 @@
+# ====================================================================
+# Python
+# ====================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ====================================================================
+# Data directory
+# Strategy: ignore the large cohorts (GB+) but keep small reference files
+# and example inputs so the demo pipeline is reproducible out-of-the-box.
+# Please see README "Data acquisition" for full download instructions.
+# ====================================================================
+data/CCLE2019/
+data/cellwhisper/
+data/GDAC/
+data/pretraining_data/
+
+# Within data/example_input/: keep small demo CSVs but ignore generated artifacts
+data/example_input/preprocessed_metadata.json
+data/example_input/textual_annotations_*.json
+# Re-include a small, hand-curated example file (when present) for the demo:
+!data/example_input/textual_annotations_example.json
+
+# ====================================================================
+# Modules not included in this public release
+# ====================================================================
+code/explainable_summary_generation/
+code/omix/Youtu_embedding/
+
+# ====================================================================
+# Model checkpoints (regeneratable, too large for git)
+# ====================================================================
+code/pretrain/save/
+code/clustering/save_figs/
+*.h5
+*.h5ad
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+*.npy
+*.npz
+
+# ====================================================================
+# Logs & experiment tracking
+# ====================================================================
+wandb/
+*.log
+nohup.out
+runs/
+lightning_logs/
+
+# ====================================================================
+# IDE / personal dev configs (do NOT commit), but DO commit shared
+# Cursor Skills so collaborators benefit from the same agent guidance.
+# ====================================================================
+.cursor/*
+!.cursor/skills/
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# ====================================================================
+# Secrets / env files
+# ====================================================================
+.env
+.env.*
+*.key
+*.pem
+
+# ====================================================================
+# Temp
+# ====================================================================
+*.tmp
+*.bak
+*~
