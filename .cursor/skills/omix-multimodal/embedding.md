@@ -4,6 +4,9 @@ This file is read by the agent when the user asks for **patient-level
 embeddings from a pretrained O-MIX checkpoint**, i.e. inference without
 fine-tuning. The reference implementation is
 `code/crossmodal_retrieval/pretraining_validation_retrival_stage1_save_embedding.py`.
+That script defaults to `data/pretraining_data/*.h5ad`, which is **not**
+open-sourced — for a custom cohort, retarget `DATA_PATHS` or follow the
+minimal template below with the user's own matrices.
 
 ## Choose the checkpoint
 

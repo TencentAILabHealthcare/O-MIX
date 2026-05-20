@@ -62,6 +62,11 @@ runs/
 lightning_logs/
 
 # ====================================================================
+# Local-only docs (do not push to GitHub)
+# ====================================================================
+README_ori.md
+
+# ====================================================================
 # IDE / personal dev configs (do NOT commit), but DO commit shared
 # Cursor Skills so collaborators benefit from the same agent guidance.
 # ====================================================================

@@ -6,6 +6,8 @@ Unlike task-specific multi-omics models trained from scratch for individual down
 
 The resulting representations support a broad range of downstream applications, including pan-cancer classification, prognosis modeling, drug response prediction, zero-shot cross-modal retrieval and classification, biomarker analysis, counterfactual therapy exploration, and retrieval-augmented clinical report generation.
 
+![O-MIX overview](github_fig.png)
+
 ---
 
 ## Highlights
@@ -123,18 +125,14 @@ The scripts read `WANDB_API_KEY` from the environment; no key is hard-coded.
 
 ## Data acquisition
 
-O-MIX builds on large-scale public multi-omics resources. The pretraining corpus integrates **TCGA, cBioPortal, UCSC Xena, CCLE, CPTAC, ARCHS4, MethylGPT, TCPA**, and **ArrayExpress**; downstream evaluation additionally uses pan-cancer cohorts (TCGA via GDAC Firehose), prognosis cohorts, **CCLE** drug response data, a human-diseases retrieval dataset, and a neoadjuvant breast cancer cohort.
+O-MIX uses public multi-omics resources for downstream evaluation, including pan-cancer cohorts (TCGA via GDAC Firehose), prognosis cohorts, **CCLE** drug response data, a human-diseases retrieval dataset, and a neoadjuvant breast cancer cohort. The Stage I/II **pretraining corpus** is described in the manuscript (*Methods* / *Data availability*) and is **not** distributed with this repository.
 
-Raw and preprocessed data are **not bundled with this repository** (they exceed GitHub's size limits and have their own data-use agreements). To reproduce, download the cohorts from the original sources and place them under the structure expected by the scripts:
+Raw and preprocessed evaluation data are **not bundled with this repository** (they exceed GitHub's size limits and have their own data-use agreements). Download the cohorts listed below and place them under the structure expected by the scripts:
 
 ```text
 data/
 ├── GDAC/                              # TCGA per-cancer-type omics (ACC, BLCA, BRCA, ...)
 ├── CCLE2019/preprocessed/             # Drug response data
-├── pretraining_data/                  # Stage-I/II pretraining inputs
-│   └── generated_files/
-│       ├── textual_annotations_llama_clean.json   # LLM-generated narratives
-│       └── textual_annotations_ccle2019.json
 ├── example_input/                     # Tiny samples bundled with the repo
 │   ├── raw_metadata.csv               #   3 rows for the preprocessing demo
 │   ├── protein_input.csv
@@ -143,7 +141,7 @@ data/
 └── gene_name_mapping/                 # Reference vocabularies (gene/probe/protein)
 ```
 
-A minimal `data/example_input/raw_metadata.csv` is included for the **Data preprocessing** demo below. Please consult the manuscript's *Methods* and *Data availability* sections for the full data-source description and any access policies that may apply.
+A minimal `data/example_input/raw_metadata.csv` is included for the **Data preprocessing** demo below. Downstream cohorts (#8–#10) and pretrained weights (#1–#7) are listed in the tables below. For pretraining data sources and access policies, see the manuscript.
 
 ### Required external resources
 
@@ -172,7 +170,6 @@ The following files / weights are **not** shipped with this repository and must 
 | 8 | **GDAC TCGA** pan-cancer cohorts (per cancer-type `mRNA_TPM.csv`, `methylation.csv`, `RPPA.csv`, clinical, mutations) | `data/GDAC/{ACC,BLCA,BRCA,...,UCEC}/` | [datasets/GDAC](https://pan.baidu.com/s/1RHjuMYqBSAcpar_gVysIMg?pwd=zc6m) |
 | 9 | **CCLE** drug-response preprocessed cohort (RNA / methylation / protein / drug response) | `data/CCLE2019/preprocessed/` | [datasets/CCLE](https://pan.baidu.com/s/1vdu84U5Udg67u6p1nN_G7A?pwd=9f5n) |
 | 10 | **Human-disease retrieval** dataset (cellwhisper) — `human_disease_tpm_log1p_filtered.h5ad`, `gsva.parquet`, etc. | `data/cellwhisper/human_disease/` | [datasets/human_disease](https://pan.baidu.com/s/1LV_V_zneIcJjrQVsCbLE_w?pwd=8tuf) |
-| 11 | Stage-I/II **pretraining corpus** — `rna_full_data.h5ad`, `protein_all_data.h5ad`, `methylation_full_data.h5ad`, `Protein_TMT_pretraining_all.csv`, `generated_files/textual_annotations_llama_clean.json`, `generated_files/textual_annotations_ccle2019.json` | `data/pretraining_data/` | [datasets/pretraining_data](https://pan.baidu.com/s/1IyF_42wWCTl8IluP1duoNA?pwd=vrpc) |
 
 ---
 
@@ -197,7 +194,7 @@ All scripts use relative paths and expect to be launched from their own director
 
 ## Quick start: which sections do I actually need?
 
-We release **all** preprocessed datasets and **all** pretrained checkpoints (Stage I × 3 and Stage II × 2) in [§Required external resources](#required-external-resources). Most users do **not** need to rerun §§1–4.
+We release **downstream evaluation cohorts** (#8–#10) and **pretrained checkpoints** (Stage I × 3 and Stage II × 2) in [§Required external resources](#required-external-resources). The pretraining corpus is not bundled here; see the manuscript. Most users do **not** need to rerun §§1–4.
 
 | Your goal | Sections to follow |
 |---|---|
@@ -310,14 +307,14 @@ If you only want to run the downstream tasks, this is the entry point. The table
 
 | Script | Required resources |
 |---|---|
-| `clustering_visualization_RNA.py` | **#3** (RNA Stage I ckpt) + **#11** (or your own RNA data) |
-| `clustering_visualization_Protein.py` | **#4** (Protein Stage I ckpt) + **#11** |
-| `clustering_visualization_methylation.py` | **#5** (Methylation Stage I ckpt) + **#11** |
-| `clustering_visualization_OMIX_O.py` | **#6** (O-MIX-O ckpt) + **#11** |
+| `clustering_visualization_RNA.py` | **#3** (RNA Stage I ckpt) + **#8** (GDAC) |
+| `clustering_visualization_Protein.py` | **#4** (Protein Stage I ckpt) + **#8** |
+| `clustering_visualization_methylation.py` | **#5** (Methylation Stage I ckpt) + **#8** |
+| `clustering_visualization_OMIX_O.py` | **#6** (O-MIX-O ckpt) + **#8** |
 | `disease_classification.py` | **#1** (Youtu-Embedding) + **#6** (O-MIX-O ckpt) + **#8** (GDAC) |
 | `prognosis_prediction.py` | **#1** + **#6** + **#8** |
 | `drug_response_prediction.py` | **#1** + **#7** (O-MIX-T ckpt) + **#9** (CCLE2019) |
-| `pretraining_validation_retrival_stage1_save_embedding.py` / `stage2_evaluation.py` | **#1** + **#7** + **#11** |
+| `pretraining_validation_retrival_stage1_save_embedding.py` / `stage2_evaluation.py` | **#1** + **#7** + pretraining-validation inputs (see manuscript; paths in `code/crossmodal_retrieval/`) |
 | `humandisease_zeroshot_classification.py` | **#1** + **#7** + **#10** (cellwhisper) |
 | `humandisease_retrieval_evaluation.py` | **#1** + **#7** + **#10** |
 | `top100_genes_extraction_gradient.py` | **#1** + **#6** + **#8** |

@@ -128,7 +128,7 @@ clinical text encoder.
 | `MODALITIES_TO_KEEP` | `['RNA', 'Protein', 'METHYL', 'TEXT']` | Subsets supported: `RPM`, `RPT`, `RMT`, `PMT` (see comment in script L52). |
 | `DRUG_NAME` | `'ERLOTINIB'` | Available: `LAPATINIB`, `ERLOTINIB`, `PACLITAXEL`, `NILOTINIB`, `SORAFENIB`, `IRINOTECAN`, `TOPOTECAN`. |
 | `LOAD_MODEL_PATH` | `'../pretrain/save/omix_t_pretrain'` | RPMT checkpoint required. |
-| `TEXT_EMBEDDING_FILE` | `'../../data/pretraining_data/generated_files/textual_annotations_ccle2019.json'` | Must exist; this is the LLM-generated narrative per cell line. |
+| `TEXT_EMBEDDING_FILE` | `'../../data/pretraining_data/generated_files/textual_annotations_ccle2019.json'` | Default path only — **not** shipped with the repo. User must place LLM-generated CCLE narratives here (see `README.md` §2) or retarget the knob to their JSON. |
 | `freeze_omics` / `freeze_text` | `True / True` | Default fine-tunes only the fusion + head. Flip to `False` for full unfreeze. |
 | `BATCH_SIZE` / `GRADIENT_ACCUMULATION_STEPS` | `1 / 16` | Larger effective batch via accumulation; text encoder is memory-heavy. |
 | `EPOCHS` | `100` | |

@@ -28,13 +28,18 @@ pretraining**.
 All paths below are relative to the project root `OMIX_codebuddy/`.
 
 > **Important:** the pretrained checkpoints (`code/pretrain/save/*`), the
-> text encoder (`code/omix/Youtu_embedding/`), and the cohort data
-> (`data/GDAC/`, `data/CCLE2019/`, `data/cellwhisper/`,
-> `data/pretraining_data/`) are **not** included in the GitHub repository.
-> If a user reports `FileNotFoundError` on any of these paths, instruct
-> them to download the relevant rows from the resource tables in the
-> project `README.md` (§ "Required external resources") and place each
-> bundle at the path shown there.
+> text encoder (`code/omix/Youtu_embedding/`), and **downstream evaluation
+> cohorts** (`data/GDAC/`, `data/CCLE2019/`, `data/cellwhisper/`) are
+> **not** included in the GitHub repository. Download the matching rows
+> from `README.md` (§ "Required external resources", tables A and B #8–#10)
+> and place each bundle at the path shown there.
+>
+> The Stage I/II **pretraining corpus** (`data/pretraining_data/` by
+> default in several scripts) is **not** distributed with this repo. For
+> `pretrain_*.py` or pretraining-validation retrieval, point users to the
+> manuscript (*Methods* / *Data availability*) or their own prepared
+> AnnData / JSON paths — do **not** suggest a public download bundle for
+> `pretraining_data`.
 
 | Asset | Path |
 |---|---|

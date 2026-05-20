@@ -13,6 +13,15 @@ a Stage-II O-MIX checkpoint is already trained (typically `omix_t_pretrain/`).
 
 ## §1 Pretraining-validation retrieval
 
+Reproduces the paper's held-out **pretraining** validation split. The omics
+`.h5ad` files and `textual_annotations_llama_clean.json` default to
+`data/pretraining_data/` in the shipped scripts; that corpus is **not**
+distributed with this repository (see manuscript). Before running, the user
+must supply those files or edit `DATA_PATHS` / `TEXT_JSON_PATH` in
+`pretraining_validation_retrival_stage*.py`. Checkpoint
+`pretraining_dataset_split.json` ships inside the released `omix_*_pretrain/`
+bundle (#6 / #7 in `README.md`).
+
 **Stage 1 — save embeddings** writes per-modality CLS embeddings + fused
 embeddings + sample IDs to disk so Stage 2 can evaluate without re-running
 the model.
@@ -124,17 +133,21 @@ files, they should either run the upstream GSVA pipeline first, or skip §3.
 
 ## Gotchas
 
-1. **`encoder_dict['TEXT']` requires `omix/Youtu_embedding/`** to be present
+1. **`FileNotFoundError` under `data/pretraining_data/`** — expected if the
+   user only downloaded README tables #8–#10. This pipeline needs the
+   pretraining-validation inputs (manuscript) or retargeted paths; it is
+   separate from human-disease zero-shot (§2), which uses `data/cellwhisper/`.
+2. **`encoder_dict['TEXT']` requires `omix/Youtu_embedding/`** to be present
    on disk. If the user only has the bare `omix_t_pretrain/` checkpoint
    without the Youtu submodule, `_build_models()` will fail loudly. Fall
    back to `_O` checkpoint + omics-only retrieval in that case.
-2. **Stage 1 writes embeddings to the checkpoint folder by default**. On
+3. **Stage 1 writes embeddings to the checkpoint folder by default**. On
    a read-only fileshare, change `OUTPUT_DIR` in the script before launching.
-3. **PEFT key mismatches** between the saved checkpoint and the freshly
+4. **PEFT key mismatches** between the saved checkpoint and the freshly
    built LoRA modules — reuse `_fix_peft_keys(...)` from
    `pretraining_validation_retrival_stage1_save_embedding.py` (already
    handles `original_X ↔ original_module.X` swap).
-4. **Sample-ID alignment** — the retrieval scripts filter by an
+5. **Sample-ID alignment** — the retrieval scripts filter by an
    "intersection" between the valid-ID set and what each modality `.h5ad`
    actually contains. If a modality file is missing some IDs the script
    silently drops them; check the printed `Intersection: N samples` line
