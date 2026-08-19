@@ -152,12 +152,12 @@ The following files / weights are **not** shipped with this repository and must 
 | # | Resource | Local destination | Download |
 |---|---|---|---|
 | 1 | **Youtu-Embedding** text encoder (drop the entire HF repo content into this folder) | `code/omix/Youtu_embedding/` | [tencent/Youtu-Embedding (HuggingFace)](https://huggingface.co/tencent/Youtu-Embedding/tree/main) |
-| 2 | **DeepSeek-BFT** merged weights (for textual annotation generation, Step 2) | `code/pretrain/save/deepseek_bft/` | [model_weights/deepseek_bft](https://pan.baidu.com/s/11WrrtcoH4amozf8V0Xf55A?pwd=swqa) |
-| 3 | Stage I — **RNA** pretrain bundle (`model_e15.pt` + `args.json` + `vocab_rna.json`) | `code/pretrain/save/rna_pretrain/` | [model_weights/rna_pretrain](https://pan.baidu.com/s/1tsLWBdHOwBKAjLtYcv90jg?pwd=fsmx) |
-| 4 | Stage I — **Protein** pretrain bundle (`model_e5.pt` + `args.json` + `vocab_protein.json`) | `code/pretrain/save/protein_pretrain/` | [model_weights/protein_pretrain](https://pan.baidu.com/s/1r5OKUxSzNpcNzfAPdH6S7w?pwd=9kmu) |
-| 5 | Stage I — **Methylation** pretrain bundle (`model_e40.pt` + `args.json` + `vocab_methyl.json`) | `code/pretrain/save/methylation_pretrain/` | [model_weights/methylation_pretrain](https://pan.baidu.com/s/1DuhI2j-RZFtaSmC3P28XAA?pwd=dnqg) |
-| 6 | Stage II — **O-MIX-O** (omics-only) bundle (`model_e8.pt` + `args.json` + 3 × `vocab_*.json` + `pretraining_dataset_split.json`) | `code/pretrain/save/omix_o_pretrain/` | [model_weights/omix_o_pretrain](https://pan.baidu.com/s/1qf0nk2cEJfb8SG16nzoLzg?pwd=ywf3) |
-| 7 | Stage II — **O-MIX-T** (omics + text) bundle (`model_e5.pt` + `args.json` + 3 × `vocab_*.json` + `pretraining_dataset_split.json`) | `code/pretrain/save/omix_t_pretrain/` | [model_weights/omix_t_pretrain](https://pan.baidu.com/s/1scUFJMg8gVnNOw0HvfpMmA?pwd=erc3) |
+| 2 | **DeepSeek-BFT** merged weights (for textual annotation generation, Step 2) | `code/pretrain/save/deepseek_bft/` | [model_weights/deepseek_bft](https://pan.baidu.com/s/14eAwgCvjNAfk0DyknkYvoA?pwd=xhfv) |
+| 3 | Stage I — **RNA** pretrain bundle (`model_e15.pt` + `args.json` + `vocab_rna.json`) | `code/pretrain/save/rna_pretrain/` | [model_weights/rna_pretrain](https://pan.baidu.com/s/1GJxma3bzJu9XRrzeWDNZZg?pwd=wt9y) |
+| 4 | Stage I — **Protein** pretrain bundle (`model_e5.pt` + `args.json` + `vocab_protein.json`) | `code/pretrain/save/protein_pretrain/` | [model_weights/protein_pretrain](https://pan.baidu.com/s/10ECxlUrfaIDukXzWSfwRFA?pwd=kc2e) |
+| 5 | Stage I — **Methylation** pretrain bundle (`model_e40.pt` + `args.json` + `vocab_methyl.json`) | `code/pretrain/save/methylation_pretrain/` | [model_weights/methylation_pretrain](https://pan.baidu.com/s/19wBt6zuwpJ4c63L4ogod3w?pwd=sbij ) |
+| 6 | Stage II — **O-MIX-O** (omics-only) bundle (`model_e8.pt` + `args.json` + 3 × `vocab_*.json` + `pretraining_dataset_split.json`) | `code/pretrain/save/omix_o_pretrain/` | [model_weights/omix_o_pretrain](https://pan.baidu.com/s/1Sl4q7QkaAINmKCOTOYiHwQ?pwd=9kzc) |
+| 7 | Stage II — **O-MIX-T** (omics + text) bundle (`model_e5.pt` + `args.json` + 3 × `vocab_*.json` + `pretraining_dataset_split.json`) | `code/pretrain/save/omix_t_pretrain/` | [model_weights/omix_t_pretrain](https://pan.baidu.com/s/1eIuitNnbkAOj_qXYiXAqeg?pwd=ia25) |
 
 > Each pretrain bundle (#3–#7) is a **folder**, not a single file. Download the link, unzip if needed, and drop **the entire folder content** into the destination path shown above. The downstream scripts read `args.json` and `vocab_*.json` from the same directory as the `.pt` file.
 
@@ -167,9 +167,9 @@ The following files / weights are **not** shipped with this repository and must 
 
 | # | Resource | Local destination | Download |
 |---|---|---|---|
-| 8 | **GDAC TCGA** pan-cancer cohorts (per cancer-type `mRNA_TPM.csv`, `methylation.csv`, `RPPA.csv`, clinical, mutations) | `data/GDAC/{ACC,BLCA,BRCA,...,UCEC}/` | [datasets/GDAC](https://pan.baidu.com/s/1RHjuMYqBSAcpar_gVysIMg?pwd=zc6m) |
-| 9 | **CCLE** drug-response preprocessed cohort (RNA / methylation / protein / drug response) | `data/CCLE2019/preprocessed/` | [datasets/CCLE](https://pan.baidu.com/s/1vdu84U5Udg67u6p1nN_G7A?pwd=9f5n) |
-| 10 | **Human-disease retrieval** dataset (cellwhisper) — `human_disease_tpm_log1p_filtered.h5ad`, `gsva.parquet`, etc. | `data/cellwhisper/human_disease/` | [datasets/human_disease](https://pan.baidu.com/s/1LV_V_zneIcJjrQVsCbLE_w?pwd=8tuf) |
+| 8 | **GDAC TCGA** pan-cancer cohorts (per cancer-type `mRNA_TPM.csv`, `methylation.csv`, `RPPA.csv`, clinical, mutations) | `data/GDAC/{ACC,BLCA,BRCA,...,UCEC}/` | [datasets/GDAC](https://pan.baidu.com/s/1XhGJl4N66EoihE4lwgrDiQ?pwd=e769) |
+| 9 | **CCLE** drug-response preprocessed cohort (RNA / methylation / protein / drug response) | `data/CCLE2019/preprocessed/` | [datasets/CCLE](https://pan.baidu.com/s/1FHVp7uw-cLDXBff6fkqjXQ?pwd=tnvp) |
+| 10 | **Human-disease retrieval** dataset (cellwhisper) — `human_disease_tpm_log1p_filtered.h5ad`, `gsva.parquet`, etc. | `data/cellwhisper/human_disease/` | [datasets/human_disease](https://pan.baidu.com/s/1qvRq-Y_GSoL8E3zq6degzw?pwd=cjgb) |
 
 ---
 
@@ -206,6 +206,23 @@ We release **downstream evaluation cohorts** (#8–#10) and **pretrained checkpo
 In short: §§1–4 are only needed when you bring your own data; if you use our released cohorts, downloading the tables above is sufficient.
 
 ---
+
+### Installation and expected runtime
+
+On Linux with Conda and CUDA already configured, creating the `omix`
+environment and installing the Python dependencies typically takes
+approximately **20–40 minutes**, depending on the network connection and
+hardware.
+
+Approximate runtimes for the full workflows are:
+
+- **O-MIX-T pretraining:** approximately 1 week on 8 NVIDIA H20 GPUs.
+- **O-MIX-O pretraining:** approximately 3 days on 8 NVIDIA H20 GPUs.
+- **Downstream fine-tuning:** tens of minutes to several hours on a single
+  NVIDIA H20 GPU, depending on the task and dataset.
+- **Inference:** typically a few minutes on a single NVIDIA H20 GPU,
+  depending on the dataset size.
+- **Metadata-preprocessing demo:** The minimal metadata-preprocessing demo runs on CPU and typically finishes in less than 1 minute.
 
 ## 1. Data preprocessing
 
